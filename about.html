@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  #about {
+    background-color: #f4f4f4;
+    padding: 50px 20px;
+    text-align: center;
+  }
+
+  #about .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  #about h2 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  #about p {
+    font-size: 1.2em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  #about .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+  }
+
+  #about .btn:hover {
+    background-color: #0056b3;
+  }
+</style>
+
+<body>
+
+  <section id="about">
+    <div class="container">
+      <h2>About Me</h2>
+
+      <p>
+        Hi , Myself Niharika I'm a Engineering Student
+      </p>
+      <p>
+        Welcome to my portfolio ! a skilled and
+        creative web developer with a passion for creating beautiful,
+        responsive, and user-friendly websites. I've worked on a variety of
+        web projects
+      </p>
+      <p><b>Proffesional Links</b></p>
+      <a href="https://www.linkedin.com/in/niharika-pal-a53262296/" class="btn">Linkedin</a>
+      <a href="https://leetcode.com/u/NiharikaPal/" class="btn">Leetcode</a>
+      <p>If u have any Question then contact me </p>
+
+      <a href="./contact.html" class="btn">Contact Us</a>
+
+    </div>
+  </section>
+
+
+
+  <script src="script.js">
+
+
+
+    import React from "react";
+    import { createUseStyles } from "react-jss";
+
+    const useStyles = createUseStyles({
+      aboutSection: {
+        backgroundColor: "#f4f4f4",
+        padding: "50px 20px",
+        textAlign: "center",
+      },
+      container: {
+        maxWidth: "800px",
+        margin: "0 auto",
+      },
+      heading: {
+        fontSize: "2.5em",
+        color: "#333",
+        marginBottom: "20px",
+      },
+      paragraph: {
+        fontSize: "1.2em",
+        color: "#555",
+        lineHeight: "1.6",
+        marginBottom: "20px",
+      },
+      button: {
+        display: "inline-block",
+        padding: "10px 20px",
+        backgroundColor: "#007bff",
+        color: "#fff",
+        textDecoration: "none",
+        borderRadius: "5px",
+        transition: "background-color 0.3s",
+        "&:hover": {
+          backgroundColor: "#0056b3",
+        },
+      },
+    });
+
+    const About = () => {
+      const classes = useStyles();
+
+      return (
+        <section className={classes.aboutSection}>
+          <div className={classes.container}>
+            <h2 className={classes.heading}>About Us</h2>
+            <p className={classes.paragraph}>
+              Welcome to [Your Company Name]! We are committed to delivering
+              excellence in everything we do. Our team of professionals is dedicated
+              to providing the best services and solutions tailored to your needs.
+            </p>
+            <p className={classes.paragraph}>
+              Our mission is to create value for our clients by focusing on quality,
+              innovation, and customer satisfaction. Join us on our journey to make a
+              difference.
+            </p>
+            <a href="#contact" className={classes.button}>
+              Contact Us
+            </a>
+          </div>
+        </section>
+      );
+    };
+
+    export default About;
+
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

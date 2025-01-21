@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f3f4f6;
+    color: #333;
+  }
+
+  .contact-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #191a1d, #da5eb0);
+    color: #fff;
+  }
+
+  .container {
+    background: #ffffff;
+    color: #333;
+    max-width: 600px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+
+  p {
+    margin-bottom: 20px;
+    font-size: 1rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: #12161b;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  button {
+    background: #222120;
+    color: #fff;
+    padding: 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 48%;
+  }
+
+  button:hover {
+    background: #1917ad;
+  }
+
+  button#resetButton {
+    background: #222120;
+  }
+
+  button#resetButton:hover {
+    background: #c62c1a;
+  }
+
+  .error-message {
+    color: red;
+    font-size: 0.875rem;
+    display: none;
+  }
+
+  .form-feedback {
+    margin-top: 20px;
+    font-size: 1rem;
+    display: none;
+  }
+
+  .success {
+    color: rgb(221, 115, 180);
+  }
+
+  .error {
+    color: red;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+
+    h2 {
+      font-size: 1.5rem;
+    }
+
+    .button-group {
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+  }
+</style>
+
+<body>
+  <section class="contact-section">
+    <div class="container">
+
+      <h2>CONTACT US</h2>
+      <p>We'd love to hear from you. Fill out the form below, and we'll respond as soon as possible.</p>
+      <form id="contactForm" novalidate>
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+          <span class="error-message" id="nameError">Name is required.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+          <span class="error-message" id="emailError">Valid email is required.</span>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" placeholder="Write your message" rows="5" required></textarea>
+          <span class="error-message" id="messageError">Message cannot be empty.</span>
+        </div>
+
+        <div class="button-group">
+          <button type="submit">Send Message</button>
+          <button type="button" id="resetButton">Reset</button>
+        </div>
+
+        <div class="form-feedback" id="formFeedback"></div>
+      </form>
+    </div>
+  </section>
+
+  <script src="script.js">
+
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      // Get form values
+      const name = document.getElementById("name").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const message = document.getElementById("message").value.trim();
+
+      // Error messages
+      const nameError = document.getElementById("nameError");
+      const emailError = document.getElementById("emailError");
+      const messageError = document.getElementById("messageError");
+      const formFeedback = document.getElementById("formFeedback");
+
+      let isValid = true;
+
+      // Reset error messages
+      nameError.style.display = "none";
+      emailError.style.display = "none";
+      messageError.style.display = "none";
+
+      // Validate name
+      if (name === "") {
+        nameError.style.display = "block";
+        isValid = false;
+      }
+
+      if (email === "" || !/^\S+@\S+\.\S+$/.test(email)) {
+        emailError.style.display = "block";
+        isValid = false;
+      }
+
+
+      if (message === "") {
+        messageError.style.display = "block";
+        isValid = false;
+      }
+
+
+      if (isValid) {
+        formFeedback.textContent = "Thank you for contacting us! Your message has been sent.";
+        formFeedback.className = "form-feedback success";
+        formFeedback.style.display = "block";
+
+
+        document.getElementById("contactForm").reset();
+      } else {
+        formFeedback.textContent = "Please correct the highlighted errors and try again.";
+        formFeedback.className = "form-feedback error";
+        formFeedback.style.display = "block";
+      }
+    });
+
+    document.getElementById("resetButton").addEventListener("click", function () {
+      const form = document.getElementById("contactForm");
+      form.reset();
+
+
+      document.querySelectorAll(".error-message").forEach((error) => (error.style.display = "none"));
+      const formFeedback = document.getElementById("formFeedback");
+      formFeedback.style.display = "none";
+    });
+
+
+  </script>
+</body>
+
+</html>
